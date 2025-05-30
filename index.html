@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alekhya Mosali - Senior Frontend Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9ff;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f8f9ff;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #f0f0f0;
+            color: #333;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #ffd700;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Interactive elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">AM</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-element" style="width: 60px; height: 60px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="floating-element" style="width: 40px; height: 40px; left: 80%; top: 10%; animation-delay: 2s;"></div>
+            <div class="floating-element" style="width: 80px; height: 80px; left: 70%; top: 60%; animation-delay: 4s;"></div>
+        </div>
+        <div class="container">
+            <h1>Alekhya Mosali</h1>
+            <p class="subtitle">Senior Frontend Engineer</p>
+            <p>Passionate frontend developer with full-stack experience, specializing in building scalable, high-performance web applications. Expert in React.js, Vue.js, and TypeScript with a proven track record at Amazon and Life Time, delivering solutions that impact millions of users.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="profile-img">AM</div>
+                    </div>
+                    <div class="about-text">
+                        <h3>Frontend Engineering Excellence with Enterprise Impact</h3>
+                        <p>With nearly a decade of experience in frontend development, I specialize in building robust, scalable web applications using cutting-edge technologies. My journey spans from building membership platforms for 120+ Life Time clubs to developing cross-platform features for Amazon Photos serving millions of users.</p>
+                        <p>Most recently at Amazon, I developed cross-platform onboarding experiences using React and React Native, built dynamic personalization features, and managed AWS cloud infrastructure. At Life Time, I led the development of internal dashboards used by 95% of employees and created enterprise-wide component libraries.</p>
+                        <p>After taking parental leave from August 2024 to April 2025, I'm excited to bring my refreshed perspective and proven track record of delivering high-impact solutions to my next role. I excel in mentoring teams, conducting rigorous code reviews, and transforming complex requirements into polished user experiences.</p>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">9+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">120+</span>
+                        <span class="stat-label">Clubs Served</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Millions</span>
+                        <span class="stat-label">Users Impacted</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend Frameworks & Libraries</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">React Native</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Redux</span>
+                            <span class="skill-tag">React Query</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Styling & Design Systems</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SCSS/SASS</span>
+                            <span class="skill-tag">LESS</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">WCAG Accessibility</span>
+                            <span class="skill-tag">Responsive Design</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Development Tools & Testing</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Webpack</span>
+                            <span class="skill-tag">Jest</span>
+                            <span class="skill-tag">Cypress</span>
+                            <span class="skill-tag">ESLint</span>
+                            <span class="skill-tag">Prettier</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Jenkins</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend & Cloud Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">GraphQL</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">AWS CDK</span>
+                            <span class="skill-tag">Lambda</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">📱</div>
+                        <div class="project-content">
+                            <h3 class="project-title">Amazon Photos Cross-Platform Experience</h3>
+                            <p class="project-description">Developed cross-platform onboarding screens for Amazon Photos using React and React Native, improving user experience and retention across iOS and Android. Built dynamic personalization features for the "For You" section based on user engagement patterns.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">AWS CDK</span>
+                                <span class="tech-tag">Lambda</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://www.amazon.com/photos" class="project-link">Live Product</a>
+                                <a href="#" class="project-link">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">🏋️</div>
+                        <div class="project-content">
+                            <h3 class="project-title">Life Time Membership Platform</h3>
+                            <p class="project-description">Led frontend development of a membership platform serving 120+ clubs, enabling users to explore facilities and sign up online. Built internal dashboards used by 95% of Life Time employees for managing member profiles and fitness programs.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React.js</span>
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">AEM</span>
+                                <span class="tech-tag">SCSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://www.lifetime.life" class="project-link">Live Platform</a>
+                                <a href="#" class="project-link">Architecture</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">🔧</div>
+                        <div class="project-content">
+                            <h3 class="project-title">Enterprise Component Library</h3>
+                            <p class="project-description">Created enterprise-wide React component libraries for Life Time's Adobe Experience Manager ecosystem. Developed streamlined onboarding processes that reduced new engineer ramp-up time from 4 weeks to 2 weeks.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Webpack</span>
+                                <span class="tech-tag">Storybook</span>
+                                <span class="tech-tag">Jest</span>
+                                <span class="tech-tag">Cypress</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">Documentation</a>
+                                <a href="#" class="project-link">Performance Metrics</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <h2>Ready to Build Amazing Digital Experiences</h2>
+                    <p>After completing my parental leave, I'm excited to return to building innovative web applications and leading frontend development initiatives. With proven experience at Amazon and Life Time, I'm seeking opportunities to create impactful solutions and mentor growing engineering teams.</p>
+                    <div class="contact-info">
+                        <a href="mailto:malekhya9899@gmail.com" class="contact-item">
+                            <span>✉️</span>
+                            <span>malekhya9899@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/alekhyamosali/" class="contact-item">
+                            <span>💼</span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/malek9899" class="contact-item">
+                            <span>💻</span>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                    <a href="mailto:malekhya9899@gmail.com" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Alekhya Mosali. Crafted with passion and precision.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animation
+        document.querySelectorAll('section > .container').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add dynamic floating elements
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.style.width = Math.random() * 50 + 20 + 'px';
+            element.style.height = element.style.width;
+            element.style.left = Math.random() * 100 + '%';
+            element.style.top = Math.random() * 100 + '%';
+            element.style.animationDelay = Math.random() * 6 + 's';
+            return element;
+        }
+
+        // Add more floating elements periodically
+        const floatingContainer = document.querySelector('.floating-elements');
+        if (floatingContainer) {
+            setInterval(() => {
+                if (floatingContainer.children.length < 8) {
+                    floatingContainer.appendChild(createFloatingElement());
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
